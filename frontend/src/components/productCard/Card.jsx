@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Card.css';
 import p1 from '../../assests/pic1.jpg';
+import Rating from '../rating/Rating';
 
 const Card = (props) => {
   return (
@@ -24,6 +25,7 @@ const Card = (props) => {
             <div className="card-body text-center mx-auto">
               <h5 className="card-title">{props.name}</h5>
               <p className="card-text">{props.price}</p>
+              <Rating rating={props.rating} />
             </div>
             <p style={{ textAlign: 'center' }}>{props.title} </p>
 

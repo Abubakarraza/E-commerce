@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+.rating span {
+  color: #ffc000;
+}
+.hovers:hover {
+  background-color: #0069d9;
+}
