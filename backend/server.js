@@ -19,10 +19,10 @@ app.get('/api/product/:slug', (req, res) => {
     res.send('user is not found');
   }
 });
-app.get('/api/product/id/:_id', (req, res) => {
+app.get('/api/product/id/:_id', async (req, res) => {
   try {
     console.log(req.params._id);
-    const datas = data.product.find((x) => x._id === req.params._id);
+    const datas = await data.product.find((ele) => ele._id === req.params._id);
     console.log(datas);
     if (datas) {
       res.send(datas);

@@ -19,6 +19,7 @@ const ProductScreen = () => {
   const dispatch = useDispatch();
   const param = useParams();
   const { slug } = param;
+  const quantity = useSelector((state) => state.cart.carts.cartItem);
 
   const cart = useSelector((state) => state.cart.carts.cartItem);
   data = useSelector((state) => state.products.product);
@@ -27,23 +28,25 @@ const ProductScreen = () => {
     dispatch(getProduct(slug));
   }, [slug]);
   const onClickHandler = async () => {
-    const existItem = cart.find((x) => x._id === data._id);
-    const quantity = existItem ? existItem.quantity + 1 : 1;
-    const res = await fetch(`/api/product/${data._id}`, {
-      method: 'get',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res))
-      .catch((e) => console.log(e));
+    const itemFind = cart.find((item) => item._id === data._id);
+    if (itemFind) {
+      const response = await fetch(`/api/product/id/${data._id}`, {
+        method: 'get',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      });
 
-    // if (datas.countInStock < quantity) {
-    //   window.alert('Sorry, Product is out of Stock');
-    // }
-    // dispatch(addToCart({ ...data, quantity: 1 }));
+      const res = await response.json();
+      if (itemFind.quantity >= res.countInStock) {
+        window.alert('Sorry, Product is out of Stock');
+      } else {
+        dispatch(addToCart(data));
+      }
+    } else {
+      dispatch(addToCart(data));
+    }
   };
   return (
     <>

@@ -1,11 +1,11 @@
 const data = {
   product: [
     {
-      _id: 1,
+      _id: '1',
       category: 'Furniture',
       name: 'Raza',
       price: 4839,
-      rating: 3,
+      rating: '3',
       countInStock: 0,
       slug: 'raza',
       sale: 12,
@@ -14,19 +14,19 @@ const data = {
       Description: 'Helo this is Shirt from the faisalabad',
     },
     {
-      _id: 2,
+      _id: '2',
       category: 'Furniture',
       name: 'Ansari',
       price: 4569,
       rating: 2,
-      countInStock: 14,
+      countInStock: 1,
       slug: 'ansari',
       sale: 10,
       brand: 'Cat',
       numReview: 9,
     },
     {
-      _id: 3,
+      _id: '3',
       category: 'Furniture',
       name: 'student',
       price: 4569,
@@ -35,7 +35,7 @@ const data = {
       rating: 4.5,
       brand: 'adidas',
       numReview: 14,
-      countInStock: 12,
+      countInStock: 4,
     },
   ],
 };

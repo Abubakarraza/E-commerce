@@ -8,14 +8,24 @@ const CartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart(state, action) {
-      return {
-        ...state,
-        carts: {
-          ...state.carts,
-          cartItem: [...state.carts.cartItem, action.payload],
-        },
-      };
+    addToCart: (state, action) => {
+      const itemInCart = state.carts.cartItem.find(
+        (item) => item._id === action.payload._id
+      );
+      if (itemInCart) {
+        itemInCart.quantity++;
+      } else {
+        return {
+          ...state,
+          carts: {
+            ...state.carts,
+            cartItem: [
+              ...state.carts.cartItem,
+              { ...action.payload, quantity: 1 },
+            ],
+          },
+        };
+      }
     },
   },
   extraReducers: {},
